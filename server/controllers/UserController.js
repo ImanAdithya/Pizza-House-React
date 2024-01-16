@@ -16,6 +16,22 @@ const UserController={
         }
     },
 
+    findUser: async function (req, res, next) {
+        try {
+
+            const user = req.body;
+            console.log(user)
+            const userInfo = await User.findOne(user);
+
+            if (userInfo) {
+                res.status(200).json(userInfo);
+            }
+        }catch (err){
+            console.error(err);
+            res.status(500).json({error: 'something went wrong !'});
+        }
+    },
+
 }
 
 module.exports=UserController

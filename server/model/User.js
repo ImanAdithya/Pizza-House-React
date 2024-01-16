@@ -8,6 +8,14 @@ const UserModel=mongoose.Schema(
             unique:true,
             index:true  // for better perfomance
         },
+        "email": {
+            require:true,
+            type:String
+        },
+        "role": {
+            require:true,
+            type:String
+        },
         "password": {
             require:true,
             type:String
