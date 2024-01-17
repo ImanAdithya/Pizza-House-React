@@ -1,4 +1,6 @@
 const User=require('../model/User');
+const {colors} = require("debug");
+
 
 
 const UserController={
@@ -43,6 +45,22 @@ const UserController={
             res.status(500).json({error:'something went wrong !'});
         }
     },
+
+    deleteUser:async function (req, res, next) {
+        try {
+            //const userName = req.body;
+            const { userName } = req.query;
+
+            console.log("User ID is "+userName);
+
+            const user = await User.deleteOne({userName: userName});
+
+            res.status(200).json(user);
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({error: 'something went wrong !'});
+        }
+    }
 
 }
 

@@ -54,10 +54,10 @@ const ProductController={
 
     deleteProduct:async function (req, res, next) {
         try {
-            const productId = req.body.foodId;
-            console.log("Product ID is "+productId);
+            const { foodId } = req.query;
+            console.log("Product ID is "+foodId);
 
-            const product = await Product.deleteOne({id: productId});
+            const product = await Product.deleteOne({foodId: foodId});
 
             res.status(200).json(product);
         } catch (err) {
