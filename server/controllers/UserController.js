@@ -1,5 +1,6 @@
 const User=require('../model/User');
 
+
 const UserController={
 
     saveUser: async function (req, res, next) {
@@ -29,6 +30,17 @@ const UserController={
         }catch (err){
             console.error(err);
             res.status(500).json({error: 'something went wrong !'});
+        }
+    },
+
+    getAllUsers:async function (req, res, next) {
+        try {
+            const UserList = await User.find();
+
+            res.status(200).json(UserList);
+        }catch (err){
+            console.log(err);
+            res.status(500).json({error:'something went wrong !'});
         }
     },
 
